@@ -1,5 +1,38 @@
 # Bank Tech Test
 
+### User Interface
+
+To create a new account:
+```ruby
+account = Account.new
+#=> creates a new instance of the Account class with an empty statement and zero balance
+```
+
+To deposit an amount:
+```ruby
+account.deposit(10)
+#=> adds 10 to the balance, inserts a new line in the account statement
+```
+
+To withdraw an amount:
+```ruby
+account.withdraw(15)
+#=> removes 10 from the balance, inserts a new line in the account statement
+```
+
+To print an account statement:
+```ruby
+Printer.print_statement(account.statement)
+#=> prints all lines in the account statement to the user
+```
+
+You can also preview the balance at any time:
+```ruby
+account.balance
+```
+
+### User stories
+
 ```text
 As a bank account holder
 So I can store money in my account
@@ -18,27 +51,13 @@ So I know how the status of my account
 I want to be able to print a statement
 ```
 
+### Functionality
 
-## Interface
+The statement is recorded as an array of hashes:
+```ruby
+[{date: date, credit: amount, debit: amount, balance: amount}]
+```
 
-client_name = Client.new(name)
-account_name = Account.new(client)
+On initialisation this is empty, but each `deposit` or `withdraw` action inserts a new line, with the current date and balance (at time of running the method).
 
-Account.deposit(amount, date) - should today's date be inferred / automated
-Account.withdraw(amount, date)
-Account.balance
-Account.print_statement - prints all entries
-
-
----
-Client - understands the client (do we even need another class for the client?)
-Account - understands the money in the account
-date - input should be standardised
-
-
-Print output:
-
-date || credit || debit || balance
-14/01/2012 || || 500.00 || 2500.00
-13/01/2012 || 2000.00 || || 3000.00
-10/01/2012 || 1000.00 || || 1000.00
+A helper class, `Datehelper` provides a method, `get_current` to insert the current date in the desired format.
