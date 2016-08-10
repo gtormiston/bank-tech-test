@@ -1,5 +1,5 @@
 require_relative '../account'
-require 'date_helper'
+require_relative 'helpers/date_helper'
 
 describe Account do
 
