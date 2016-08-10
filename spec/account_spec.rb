@@ -27,6 +27,10 @@ describe Account do
       expect{account.deposit(0.55)}.to change{account.balance}.by(0.55)
     end
 
+    it 'should not allow a deposit of a non-number' do
+      expect{account.deposit("not a number")}.to raise_error(TypeError)
+    end
+
     it 'should record the date of a deposit' do
       account.deposit(10)
       expect(account.statement.last).to include(:date => todays_date)
@@ -47,6 +51,10 @@ describe Account do
 
     it 'should allow a withdrawal of a float' do
       expect{account.withdraw(20.20)}.to change{account.balance}.by(-20.20)
+    end
+
+    it 'should not allow a withdrawal of a non-number' do
+      expect{account.withdraw("not a number")}.to raise_error(TypeError)
     end
 
     it 'should record the date of a withdrawal' do

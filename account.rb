@@ -25,7 +25,7 @@ class Account
 
   def add_to_statement(date, credit, debit, balance)
     statement_line = {date: date, credit: credit, debit: debit, balance: balance}
-    @statement << statement_line
+    @statement.unshift(statement_line)
   end
 
 end

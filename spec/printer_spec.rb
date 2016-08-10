@@ -17,8 +17,8 @@ describe Printer do
       account.withdraw(10)
       expect(account.statement.count).to eq(2)
       expect { Printer.print_statement(account.statement) }.to output("date || credit || debit || balance\n" +
-                                                    "#{todays_date} || 10 ||  || 10\n" +
-                                                    "#{todays_date} ||  || 10 || 0\n").to_stdout
+                                                                      "#{todays_date} ||  || 10 || 0\n"+
+                                                                      "#{todays_date} || 10 ||  || 10\n").to_stdout
     end
 
     it 'should print a blank space in the withdrawal column for a deposit line' do
